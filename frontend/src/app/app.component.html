@@ -1,0 +1,130 @@
+<!--
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">WELCOME</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active">
+                
+                <li>
+                    <a routerLink="/drug">Drug</a>
+                </li>
+                
+                <li>
+               
+                    <a routerLink="/disease">Disease</a>
+                </li>
+
+                <li>
+                    <a routerLink="/drug">İlaç</a>
+                </li>
+                
+         
+
+        </ul>
+    </div>
+</nav>
+-->
+<!--<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"></a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="/disease">Disease</a>
+                </li>
+                <li>
+                    <a href="/drug">Drug</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+    </div>
+
+</body> -->
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <a class="navbar-brand" routerLink="/">WELCOME</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li routerLinkActive="active">
+                
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" >Patient
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a routerLink="/show-patient">Show Patient List</a>
+                    </li>
+                    <li>
+                        <a routerLink="/add-patient">Add Patient </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" >Drug
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a routerLink="/show-drug">Show Drug List</a>
+                    </li>
+                    <li>
+                        <a routerLink="/add-drug">Add Drug </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" >Disease
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a routerLink="/show-disease">Show Disease List</a>
+                    </li>
+                    <li>
+                        <a routerLink="/add-disease">Add Disease </a>
+                    </li>
+                </ul>
+            </li>
+            <li routerLinkActive="active">
+                <a routerLink="/treat">Treat</a>
+            </li>
+        </ul>
+
+        <div class="nav navbar-nav navbar-right">
+            <button type="button" class="btn btn-default navbar-btn" (click)="logout()">Logout</button>
+
+        </div>
+    </div>
+</nav>
+
+
+<router-outlet></router-outlet>

@@ -1,0 +1,17 @@
+<div class="container">
+<h2 class="text-center">DISEASE LIST</h2>
+<table class="table">
+    <thead>
+        <tr> <th>Disease Name</th>
+            <th>Disease Description</th>  </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let disease of diseaseList; let i = index">
+            <th scope="row">{{disease.disease_name}}</th>
+            <td>{{disease.disease_description}}</td>
+
+
+        </tr>
+    </tbody>
+</table>
+</div>

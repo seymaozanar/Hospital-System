@@ -1,0 +1,36 @@
+button.btn-primary{
+  background-color: rgb(0, 0, 0); /* Green */
+  border: none;
+  color: white;
+  padding: 3px 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+
+
+}
+button.btnbtn-primary{
+  background-color: rgb(0, 0, 0); /* Green */
+  border: none;
+  color: white;
+  padding: 7.3px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 2px 2px;
+  cursor: pointer;
+}
+
+li.list-group-itemmm{
+  list-style-type: circle;
+  font-size:20px;
+
+}
+.drug_kayit{
+  height: 28px;
+  width:  400px;
+}

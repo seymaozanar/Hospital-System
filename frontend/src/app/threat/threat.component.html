@@ -1,0 +1,171 @@
+<div class="container">
+
+	<form class="form" #updateForm="ngForm">
+		<div class="form-group row">
+			<div class="col-md-1"> Patient : </div>
+			<div class="col-md-9">
+				<select class="form-control " ngModel name="patient" required>
+					<option *ngFor="let patients of patientList; let i = index" [ngValue]="patients">{{patients.name}} {{patients.surname}} </option>
+				</select>
+			</div>
+			<div class="col-md-2">
+				<button type="button" class="btn btn-default navbar-btn" routerLink="/add-patient">Add Patient</button>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<div class="col-md-1"> Disease : </div>
+
+			<div class="col-md-9">
+				<select class="form-control " ngModel name="disease" required>
+
+					<option *ngFor="let  disease of diseaseList; let i = index" [ngValue]="disease">{{disease.disease_name}}</option>
+
+				</select>
+			</div>
+			<div class="col-md-2">
+				<button type="button" class="btn btn-default navbar-btn" routerLink="/add-disease">Add Disease</button>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<div class="col-md-1"> Drug : </div>
+
+			<div class="col-md-9">
+
+				<select class="form-control " ngModel name="drug" required>
+					<option *ngFor="let  drug of drugList; let i = index" [ngValue]="drug">{{drug.drugName}} </option>
+
+				</select>
+			</div>
+			<div class="col-md-2">
+				<button type="button" class="btn btn-default navbar-btn" routerLink="/add-drug">Add Drug</button>
+			</div>
+		</div>
+
+
+		<div class="form-group row">
+			<div class="col-md-1"> Situation : </div>
+			<div class="col-md-9">
+
+				<select class="form-control " ngModel name="situation">
+
+					<option *ngFor="let  item of situationList; let i = index" [ngValue]="item">{{item}} </option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal" (click)="saveAll(updateForm.value)"
+			 [disabled]="updateForm.invalid">Treat</button>
+		</div>
+	</form>
+
+
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Edit Treatment Profile</h4>
+				</div>
+
+				<div class="modal-body">
+					You choosed: {{selectedTreat?.drug.drugName}}
+					<br> Patient: {{selectedTreat?.patient.name}}
+					<br> Disease: {{selectedTreat?.disease.disease_name}}
+					<br> Situation : {{selectedTreat?.situation}}
+
+
+				</div>
+
+				<div class="modal-footer">
+
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th scope="col">Patient</th>
+			<th scope="col">Disease</th>
+			<th scope="col">Drug</th>
+			<th scrope="col">Situation</th>
+		</tr>
+	</thead>
+
+
+	<tbody>
+		<tr *ngFor="let treat of treatList; let i = index">
+			<th scope="row">{{treat.patient?.name}}{{treat.patient?.surname}}</th>
+			<td>{{treat.disease?.disease_name}}</td>
+			<td>{{treat.drug?.drugName}}</td>
+			<td>{{treat.situation}}</td>
+			<td>
+				<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" (click)="selectTreat(treat)" data-target="#myModal2">EDIT</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal2" role="dialog">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Edit Patient Profile</h4>
+			</div>
+
+
+			<div class="modal-body">
+				<form #editForm="ngForm" *ngIf="editedSelected">
+					<input name="user" ngModel hidden>
+					<input name="id" ngModel hidden> Patient:
+					<select class="form-control " [(ngModel)]="patient" name="patient" required [compareWith]="compareObjects">
+						<option *ngFor="let patients of patientList; let i = index" [ngValue]="patients">{{patients.name}} {{patients.surname}} </option>
+					</select>
+
+					<br> Disease:
+					<select class="form-control " [(ngModel)]="disease" name="disease" required [compareWith]="compareObjects">
+						<option *ngFor="let disease of diseaseList; let i = index" [ngValue]="disease">{{disease.disease_name}} </option>
+					</select>
+					<br> Drug:
+					<select class="form-control " [(ngModel)]="drug" name="drug" required [compareWith]="compareObjects">
+						<option *ngFor="let  drug of drugList; let i = index" [ngValue]="drug">{{drug.drugName}} </option>
+
+					</select>
+					<br> Situation:
+					<select class="form-control " [(ngModel)]="situation" name="situation" required [compareWith]="compareObjects">
+						<option *ngFor="let  item of situationList; let i = index" [ngValue]="item">{{item}} </option>
+					</select>
+
+
+					<div class="modal-foooter">
+
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn" (click)="saveEdit()" data-dismiss="modal" [disabled]="editForm.invalid || !editForm.dirty">Save</button>
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+<!-- Bar chart -->
+<div>
+	<div style="display: block">
+		<canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+		 [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+	</div>
+</div>

@@ -1,0 +1,50 @@
+<div class="container">
+  <h2 class="aa">PATIENT LIST</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Surname</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patients of patientList; let i = index">
+        <th scope="row">{{patients.name}}</th>
+        <td>{{patients.surname}}</td>
+        <td>
+          <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal" (click)="selectPatientt(patients)">EDIT</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Patient Profile</h4>
+        </div>
+        <div class="modal-body">
+          <form #updateForm1="ngForm" (ngSubmit)="savePatient(updateForm1.value)">
+            <input name="user" ngModel hidden>
+            <input name="id" ngModel hidden> Name:
+            <input type="text" name="name" ngModel required>
+            <br> Surname:
+
+            <input type="text" name="surname" ngModel required>
+
+
+            <div class="modal-footer">
+
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn" (click)="savePatient(updateForm.value)" data-dismiss="modal" [disabled]="updateForm1.invalid || !updateForm1.dirty">Save</button>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

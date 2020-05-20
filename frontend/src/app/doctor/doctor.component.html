@@ -1,0 +1,33 @@
+
+<div class="container">
+        <h1 class="headerss" style="text-align:  center;">DOCTOR LIST</h1>
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <h1>{{ appName | async }}</h1>
+              <form class="form-horizontal" #doctorForm="ngForm" (ngSubmit)="saveDoctor(doctorForm.value)">
+                    <div class="form-group">
+                          <label for="name">Doctor Name</label>
+                        <input type="text" class="form-control" id="name" name="name" ngModel required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alterEgo">Doctor Surname</label>
+                        <input type="text" class="form-control" id="surname" name="surname" ngModel required>
+                    </div>
+                    <div class="form-group">
+                        <label for="alterEgo">Doctor Branch</label>
+                        <input type="text" class="form-control" id="branch" name="branch" ngModel required>
+                    </div>
+
+                    <button type="submit">Add Doctor</button>
+                
+                </form>
+            <h4 class="liste">DOCTORS</h4>
+            <ul class="list-group" *ngFor="let doctor of doctors">
+                <li class="list-group-item">{{ doctor.name }} {{ doctor.surname }} {{ doctor.branch }}
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
